@@ -3,6 +3,7 @@ package com.myGatlingTest
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
+import UpdateMerchantsFeeder._
 
 import scala.concurrent.duration.DurationInt
 
@@ -21,7 +22,7 @@ class MyComputerJourney extends Simulation {
 
 
 	val scn = scenario("MyComputerJourney")
-			.feed(csvFeeder)
+			.feed(updateMerchants)
 			.exec(http("LoadHomePage")
 				.get("/computers"))
 				.pause(5)
@@ -30,10 +31,8 @@ class MyComputerJourney extends Simulation {
 				.pause(5)
 				.exec(http("CreateNewComputer")
 					.post("/computers")
-					.formParam("name", "${computerName}")
-					.formParam("introduced", "${introduced}")
-					.formParam("discontinued", "${discontinued}")
-					.formParam("company", "${companyId}"))
+					.body(ElFileBody("data/MerchantsRequestBody.json"))
+				)
 				.pause(5)
 				.exec(http("FilterComputer")
 					.get("/computers?f=GatlingComputer")

@@ -1,0 +1,15 @@
+{
+  "id":"${id}",
+  "merchantid":null,
+  "email":"${email}",
+  "countryCode": "+353",
+  "phoneNumber":"${phoneNumber}",
+  "storeName":"${storeName}",
+  "firstName":"${firstName}",
+  "lastName":"${lastName}",
+  "dateOfBirth":"${dob}",
+  "gender":"${gender}",
+  "nationalIdNumber":"${nationalIdNumber}",
+  "businessAddress":"${businessAddress}",
+  "termsAndConditions":true
+}
